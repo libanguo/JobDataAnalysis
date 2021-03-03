@@ -1,0 +1,16 @@
+## 准备阶段
+
+需要将DataDispose.py以及SparkStreaming.py中的sparkContext中的设置master改为集群sparkmaster的url
+
+同时由于spark和mongodb的兼容性问题，需要将文件中jars文件夹的四个jar包添加进spark安装路径jars文件夹中。
+运行时有可能还需要import其他库，需要先pip引入python的库
+
+## 运行流程
+先运行DataDispose.py，再运行Vision.py，最后运行SparkStreaming.py（可能会要求关闭防火墙，因为有socket通讯）
+
+但由于DataDispose连接数据库较慢(等待时间可能会有些长)，SparkStreaming最开始是感知不到数据的，需要等一段时间才会出现数据，然后再运行一段时间后在本地路径会生成html和gif文件就是我们的可视化
+
+
+
+注释：我们的爬虫代码放在scrapy-job-master文件夹中，由于数据以及提前爬完存在数据库中就不需要运行。
+
